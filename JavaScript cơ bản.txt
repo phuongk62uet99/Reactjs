@@ -18,3 +18,93 @@ setTimeout(function(){
     alert("Chào mừng bạn đến với freetuts.net");
 }, 3000);
 sau 3s thì chữ đó sẽ xuất hiện
+
+
+
+--------------------------------------------- check---------------------------------------------------------------
+
+
+2) Các câu hỏi hay gặp 
+2.1 ) Use strict là gì ( rảnh thì time hiểu thêm ) 
+Là chế độ nghiêm ngặt trong javaScript
+Ví dụ 
+Chưa có Use strict
+x = 10;
+console.log(window.x);
+// => 10
+
+Khi đã có use strict
+"use strict"
+variable = "tranvanmy";
+console.log(variable);
+
+Uncaught ReferenceError: variable is not defined
+// đoạn code đã bị lỗi - bạn cần khắc phục nó
+-Để khắc phục được điều trên thì bạn cần phải khai báo biến với từ khóa var hoặc let.
+"use strict"
+var variable = "tranvanmy";
+// or
+let variable = "tranvanmy";
+console.log(variable);
+
+2.2) Var, const, let khác nhau ra sao?
+*)
+Từ khóa var chúng ta có thể khai báo dưới dạng number, string, boolea, ect (Chưa hiểu )
+Ví dụ 
+    console.log (greeting);
+    var greeting = "say hello";
+sẽ được biên dịch thành 
+    var greeting;
+    console.log(greeting); // greeting is undefined
+    greeting = "say hello";
+*) let : cho phép chúng ta cập nhật giá trị của biến chứ không cho phép chúng ta tái khái báo lại biến đó
+biến let được khai báo sẽ có scope là block scoped và chỉ được sử dụng trong khối lệnh đó 
+let greeting = "say Hi";
+   let times = 4;
+
+   if (times > 3) {
+        let hello = "say Hello instead";
+        console.log(hello); // "say Hello instead"
+    }
+   console.log(hello); // hello is not defined
+==>> Nó chỉ được sử dụng trong câu lệnh if
+
+*Const : Không cho phép chúng ta cập nhập giá trị của nó, cũng ko được khai báo lại luôn 
+Ví dụ : 
+    const greeting = "say Hi";
+    greeting = "say Hello instead"; // error : Assignment to constant variable. 
+
+    ------------------------------------------------
+
+    const greeting = "say Hi";
+    const greeting = "say Hello instead"; // error : Identifier 'greeting' has already been declared
+
+
+2.3 ) Sự khác nhau giữa Function Scope và Block Scope trong Javascript
+Sự khác nhau giữa var, let và const
+var width = 100;
+let height = 200;
+const key = 'abc123';
+var là gì ? Nó có thể được gán lại và cập nhật. Ví dụ:
+// Khai báo 1 biến
+var width = 1000;
+// Khi gọi tới width
+width // sẽ trả về 1000
+// Gán lại giá trị cho width và gọi lại nó
+width = 200;
+width // lúc này giá trị của width là 200
+*) Thế nào là function Scope 
+function setWidth(){
+    var width = 100;
+    console.log(width);
+}
+width;
+// Return:
+Uncaught ReferenceError: width is not defined
+==>> Tổng kết lại : Khai báo biến var bên trong funC thì bên ngoài ko gọi được - ngược lại
+khai báo bên ngoài thì bên trong FunC hoạt động được - vì nó là biến toàn cục . 
+
+Block là gì ? nó là khối lệnh bên trong dấu {}
+Lưu ý với ES6 họ đã sử dụng let thay vì sử dụng var , lưu ý nên sử dụng var
+
+==>> đọc tiếp https://viblo.asia/p/javascript-hoi-dap-ve-javascript-phan-2-3Q75w2jQlWb
