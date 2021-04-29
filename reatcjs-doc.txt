@@ -1,0 +1,2 @@
+the Gift card summary report screen
+feature/CA-977-Report-gift-card-status-summary

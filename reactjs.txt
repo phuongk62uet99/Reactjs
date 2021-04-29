@@ -1,0 +1,60 @@
+1) Vòng đời của một React Component
+
+1.1) componentWillMount()
+Được gọi trước khi render().
+Dùng để đăng ký các sự kiện toàn cục.
+Dựa vào các props để tính toán và set lại state
+1.2) render()
+Trả về 1 đối tượng JSX (có thể lồng các đối tượng với nhau nhưng phải có 1 đối tượng gói tất cả các đối 
+tượng lại) để hiển thị hoặc null / false nếu không muốn hiển thị gì.
+1.3) componentDidMount()
++) Ngay sau khi hàm render được gọi đến lần đầu tiên chạy xong thì hàm này sẽ được chạy.
++) Thường dùng để fetch dữ liệu từ server và sau đó setState để render dữ liệu ra.
+1.4) shouldComponentUpdate(nextProps, nextState)
++) Được gọi trước render.
++) Trả về true / false. Nếu false thì sẽ không render lại. Mặc định là true.
+1.5) componentWillUpdate(nextProps, nextState)
++) Được gọi ngay sau shouldComponentUpdate() nếu hàm này trả về true.
++) Không gọi setState() trong hàm này bởi hàm này là để chuẩn bị update cho đối tượng chứ không phải tạo ra 1 
+update mới, sẽ tạo ra lặp vô hạn.
++) Hàm render sẽ được gọi ngay sau hàm này.
+1.6) componentWillUnmount()
++) Được gọi khi 1 component được loại bỏ khỏi DOM.
++) Thực hiện các thao tác dọn dẹp như huỷ các timer, loại bỏ các phần tử thừa, ...
+
+2) useEffect funC
+
+ useEffect(() => {
+    document.title = 'Count is: ' + count
+  })
+giống componentDidUpdate
+
+---------
+ useEffect(() => {
+    document.title = 'Count is: ' + count
+  }, [])
+
+giống componentDidMount
+
+-------------------
+
+Nếu luôn muốn lấy giá trị sau cùng bên trong effect, cách dễ nhất là dùng refs
+function Example() {
+    const [count, setCount] = useState(0);
+    ...
+    const latestCount = useRef(count);
+    ...
+
+    useEffect(() => {
+        ...
+        latestCount.current = count;
+        ...
+        setTimeout(() => {
+            ...
+                console.log(`You clicked ${latestCount.current} times`);
+            ...
+        }, 3000);
+    });
+}
+
+==>> Tối nay xem lại 

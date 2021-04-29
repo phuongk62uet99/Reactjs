@@ -1,0 +1,21 @@
+TypeScript Compiler (tsc). tsc sẽ làm nhiệm vụ compile code TS về JS để trình duyệt có thể hiểu và xử lý được
+Ví dụ khi bị lỗi 
+let john = 'John'; john = 123; // Như trên là hợp lệ và hoàn toàn hoạt động tốt trong JS. 
+// Nhìn thì có vẻ "thoải mái" nhưng rất dễ dẫn đến lỗi ngớ ngẩn khi các bạn phát triển phần mềm của mình, 
+nếu như không để ý và cẩn thận. let john = 'John';
+
+******************
+1) Phân biệt Type vs Interface trong typescript
+Về cơ bản typescript có 3 loại types chính đó là
+	Any type
+	Built in type
+	User defined type
+1.1) Khai báo 
+type Shape = {
+  name: string;
+  color: string;
+};
+interface Shape {
+   name: string;
+  color: string;
+}

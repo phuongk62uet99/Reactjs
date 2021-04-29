@@ -1,0 +1,107 @@
+1) Quá trình xử lý đồng bộ ( Synchronous )
+Chạy tuần tự như học C ngày xưa
+2) Quá trình bất đồng bộ (Asynchronous)
+Một lưu ý là có thể câu lệnh thứ 2 sẽ thực hiện nhanh hơn câu lệnh 1 nên sẽ trả về kết quả sớm hơn. Do đó, kết 
+quả của các câu lệnh cũng có thể được trả về không theo thứ tự gọi bạn đâu.
+
++) Ưu điểm: Như đã nói, nó giúp chúng ta tối ưu được thời gian chạy của các câu lệnh. Cũng giúp chúng ta thực hiện 
+các tác vụ mất nhiều thời gian mà không làm ảnh hưởng đến luồng chính của chương trình.
+
++) Khuyết điểm: Chính vì các câu lệnh được thực hiện đồng thời và kết quả cũng được trả về một cách không theo thứ 
+tự nên sẽ khó kiểm soát cũng như debug code.
+
+2.1 ) Sử dụng callback ( ES5) 
+Callback hiểu đơn giản là bạn truyền một hàm B vào hàm A dưới dạng 1 tham số, một lúc nào đó thì hàm A sẽ 
+gọi hàm B để chạy. Ví dụ:
+
+function asyncFunction(callback) {
+   console.log("Start");
+   setTimeout(() => {
+      callback();
+   }, 1000);
+   console.log("Waiting");
+}
+
+let printEnd = function() {
+   console.log("End");
+}
+
+asyncFunction(printEnd)
+
+--------
+callback lồng nhau rất phức tạp 
+function getData(link, callback) {
+   setTimeout(() => {
+      callback();
+   }, 1000)
+}
+
+getData("Data1", () => {
+   getData("Data2", () => {
+      getData("Data2", () => {
+         getData("Data3", () => {
+            getData("Data4", () => {
+               getData("Data5", () => {
+                  getData("Data6", () => {
+                     console.log("Done");                     
+                  })
+               })
+            })
+         })
+      })
+   })
+})
+2.2 ) Sử dụng Promise ( ES6 ) 
+ Về khái niệm, Promise chính là "lời hứa"
+let promise = new Promise((resolve, reject) => {
+  // Asynchronous Code.
+});
+Promise sẽ nhận vào một hàm callback gồm 2 tham số như sau:
+     +)	resolve: một function sẽ được gọi nếu đoạn code bất đồng bộ trong Promise chạy thành công.
+     +)	reject: một function sẽ được gọi nếu đoạn code bất đồng bộ trong Promise có lỗi xảy ra.
+Promise cũng cung cấp cho chúng ta 2 phương thức để xử lý sau khi được thực hiện:
+     +)	then(): Dùng để xử lý sau khi Promise được thực hiện thành công (khi resolve được gọi).
+     +)	catch(): Dùng để xử lý sau khi Promise có bất kỳ lỗi nào đó (khi reject được gọi).
+---------
+Ví dụ về việc sử dụng Promise hoàn chỉnh 
+const randomNumber = new Promise((resolve, reject) => {
+   const url = 'https://www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new';
+   let request = new XMLHttpRequest();
+
+   request.open('GET', url);
+   request.onload = function() {
+      if (request.status == '200') {
+         resolve(request.response);
+      } else {
+         reject(Error(request.statusText)); 
+      }
+   };
+
+   request.onerror = function() {
+      reject(Error('Error fetching data.'));
+   };
+
+   request.send();
+});
+
+randomNumber
+.then((res) => {
+   console.log("Success");
+   console.log("Random number: ", res);
+})
+.catch((err) => {
+   console.log("Error: ", err.message);
+})
+
+2.3) Async / Await
+https://viblo.asia/p/giai-thich-ve-asyncawait-javascript-trong-10-phut-1VgZvBn7ZAw
+*) Async / Await là một tính năng của JavaScript giúp chúng ta làm việc với các hàm bất đồng bộ theo cách thú vị hơn và dễ hiểu hơn
+*) Async - khai báo một hàm bất đồng bộ (async function someName(){...}).
++) Tự động biến đổi một hàm thông thường thành một Promise.
++) Khi gọi tới hàm async nó sẽ xử lý mọi thứ và được trả về kết quả trong hàm của nó.
++) Async cho phép sử dụng Await.
+*) Await - tạm dừng việc thực hiện các hàm async
+ async function getJSONAsync() {
+        let json = await axios.get('https://tutorialzine.com/misc/files/example.json');
+        return json;
+    }

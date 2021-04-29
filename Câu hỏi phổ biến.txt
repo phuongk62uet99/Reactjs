@@ -1,0 +1,82 @@
+2. JSX là gì?
+JSX là một phần mở rộng của cú pháp JavaScript cho phép viết code trông giống như HTML
+ta có jsx
+<div className="sidebar" />
+Khi được dịch sang js
+React.createElement(
+  'div',
+  {className: 'sidebar'}
+)
+
+3) Sự khác nhau giữa class component và functional component?
+Class component:
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+functional component:
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+4) Keys được dùng để làm gì
+
+5) Sự khác nhau giữa state và props 
+ +)props là dự liệu được truyền vào trong một component từ cha của nó, chúng không nên bị thay đổi
+ +)State là dữ liệu bên trong của một component, nó có thể được thay đổi trong vòng 
+đời của một component
+6) Tại sao phải goi setState thay vì trực tiếp thay đổi state?
+ +) nếu cố gắng thay đổi trực một state của component trực tiếp, React sẽ không thể nào biết được khi nào cần
+render component đó.bằng cách sử dụng setState(), reactjs có thể cập nhật component cho Ui của nó
+ +) Nếu bạn cần cập nhật một state của component dựa theo dữ liệu của state khác hay props khác, chỉ cần truyền 
+một hàm vào setState(), khi đấy bạn truyền state và props như 2 tham số của hàm:
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
+
+7) Làm thế nào để bạn giới hạn kiểu giá trị cho Props được truyền vào hay làm cho nó có giá trị
+required ?
+import PropTypes from 'prop-types';
+
+class Greeting extends React.Component {
+  render() {
+    return (
+      <h1>Hello, {this.props.name}</h1>
+    );
+  }
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string
+};
+// xem thêm https://reactjs.org/docs/typechecking-with-proptypes.html
+
+8) Props drilling là gì ? cách phòng tránh nó ? 
+Prop drilling là điều xảy ra khi bạn truyền dữ liệu từ một component cha xuống một conponet con thấp hơn 
+Ví dụ : 
+function Toggle() {
+  const [on, setOn] = React.useState(false)
+  const toggle = () => setOn(o => !o)
+  return (
+    <div>
+      <div>The button is {on ? 'on' : 'off'}</div>
+      <button onClick={toggle}>Toggle</button>
+    </div>
+  )
+}
+Chúng ta hãy thử chia nó thành 2 components:
+function Toggle() {
+  const [on, setOn] = React.useState(false)
+  const toggle = () => setOn(o => !o)
+  return <Switch on={on} onToggle={toggle} />
+}
+
+function Switch({on, onToggle}) {
+  return (
+    <div>
+      <div>The button is {on ? 'on' : 'off'}</div>
+      <button onClick={onToggle}>Toggle</button>
+    </div>
+  )
+}

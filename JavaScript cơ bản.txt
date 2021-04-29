@@ -1,0 +1,20 @@
+1) các hàm cơ bản 
+1.1) Hàm alert() trong javascript
+<input type="button" onclick="alert('Xin chào các bạn')" value="Click Me"/>
+----------
+Phân biệt toán tử '==' và '==='
+
+-------------
+Khác nhau giữa a++ và ++a
+
+var a = 12;
+alert(a++); // Lúc này a = 12
+ 
+var b = 12;
+alert(++b); // Lúc này b = 13
+------------------------
+1. Hàm setTimeout() trong Javascript
+setTimeout(function(){
+    alert("Chào mừng bạn đến với freetuts.net");
+}, 3000);
+sau 3s thì chữ đó sẽ xuất hiện
