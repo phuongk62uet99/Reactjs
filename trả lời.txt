@@ -1,0 +1,20 @@
+1) Trong quá trình làm dự án em đã làm được những gì ? 
++) Quy trình thì kéo task, làm việc với tester, đọc document, đọc spec, làm xong task đẩy lên git push tester test.Làm 1 task cần xác định phải làm gì - nếu cần thì xem lại 
+design và spec xem chúng có khóp với nhau không, nếu không khớp thì hỏi lại( khách hàng test ). 
+++) Task khó đã làm 
++) Chỉnh sửa giao diện theo ý của tester(màu sắc, front chữ, khoảng cách, icon) 
++) Fixbug, làm task có trong sprint, fixbug do tester log . 
++) Xây dựng trang, chức năng mới ( Card range, gift card summary, approval requests)
+Chức năng 
++) Thêm, Sửa, Hiện ra list, details
++) Tìm kiếm ( Search, type, Status, Any date ) ==>> Khi các trường bị sai thì sửa lại
+++) Approval requests ==> có All approval và My approval request
++) Viết test case( unit test, test cho funC) Viết bằng jest test
+eg : expect(sum(1, 2)).toBe(3);
+eg : expect('Christoph').toMatch(/stop/);
+card-group.type.ts : các kiểu của đối tượng
+card-group.service.ts : 
+ return apiClient.get<ICardRange>(url).then((res) => {
+    res.data
+  });
+lấy về được data chả về
