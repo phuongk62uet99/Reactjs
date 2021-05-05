@@ -1,0 +1,4 @@
+1) reatcjs-query là gì ?
++)Tác dụng của nó : khi làm việc với api, khi xử lý dữ liệu không đồng bộ, cập nhập data
+hay lưu data và cache ( tìm hiểu xem từ này là gì )
+

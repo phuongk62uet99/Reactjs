@@ -1,0 +1,58 @@
+1) Hoisting trong Javascript
+function sayHi() {
+  console.log(name);
+  console.log(age);
+  var name = "Lydia";
+  let age = 21;
+}
+
+sayHi();
+==>> Kết quả : undefined and ReferenceError
+
+Khai báo biến name bằng từ khóa var ==>> hoisting đã xảy ra với giá trị mặc định là undefined
+cố gằng log biến name nhưng ta chưa khai báo biến name ==>> hoisting xảy ra nên biến name có giá trị 
+là `undefined`. Còn các biến với từ khóa let ( const ) cũng được hoisting như khi đó ta cố gắng truy cập biến này
+mà chuuaw khai báo thì nó sẽ có giá trị là `ReferenceError`.
+
+2) Vòng lặp sử dụng var hoặc let trong Javascript có gì khác nhau
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1);
+}
+
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1);
+}
+
+// đáp số : 0 1 2 and 3 3 3
+
+3) Khi sử dụng từ khóa this trong arrow function nên lưu ý điều gì ? 
+const shape = {
+  radius: 10,
+  diameter() {
+    return this.radius * 2;
+  },
+  perimeter: () => 2 * Math.PI * this.radius
+};
+
+shape.diameter();
+shape.perimeter();
+
+// đáp số : 20 and NaN
+
+4) Kiểu dữ liệu
++true;
+!"ICT Hà Nội";
+// Kết quả 1 and false
+Toán tử + ở đây đã chuyển đổi một toán hạng thành một số. true là 1 và false là 0.
++) Trong js ta có : 
+Kiểu Boolean có falsy value là false // false
+Kiểu Number có falsy value là 0 và NaN // false
+Kiểu String có falsy value là '' // false
+Kiểu null là có falsy value null // false
+Kiểu undefined có falsy value là undefined // false
+
+Câu 7 : 
+new Number() là một constructor function được xây dựng sẵn. Mặc dù nó trông giống như một số, 
+nhưng nó không thực sự là một số: Nó có một loạt các tính năng bổ sung và là một đối tượng.
+
+Câu 8 :

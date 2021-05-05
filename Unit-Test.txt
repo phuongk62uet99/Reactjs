@@ -1,0 +1,5 @@
+1) Test là gì
+Test các chức năng funC của ứng dụng, những gì mà user sẽ sử dụng
+
+2) Jest test 
+*) Common Matchers

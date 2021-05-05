@@ -18,3 +18,10 @@ card-group.service.ts :
     res.data
   });
 lấy về được data chả về
+
+
+-----------------
++) Dự án làm về cái gì?
++) Sử dụng công nghệ gì, techstack có những gì trong đó.
++) Có bao nhiêu người rồi, và bạn sẽ làm việc với ai?
++) Tính của team có vui vẻ, hoà đồng không?
